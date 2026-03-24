@@ -1,0 +1,1277 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Стратегия вокальной студии — Алматы</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;800&family=Nunito+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #0F0E17;
+  --card: #1A1926;
+  --card-hover: #222136;
+  --accent: #FF6B35;
+  --accent2: #F7C948;
+  --accent3: #7B61FF;
+  --accent4: #2CB67D;
+  --text: #FFFFFE;
+  --text-muted: #94A1B2;
+  --text-dim: #72757E;
+  --border: rgba(255,255,255,0.06);
+  --gradient1: linear-gradient(135deg, #FF6B35, #F7C948);
+  --gradient2: linear-gradient(135deg, #7B61FF, #2CB67D);
+  --gradient3: linear-gradient(135deg, #F7C948, #2CB67D);
+  --gradient4: linear-gradient(135deg, #FF6B35, #7B61FF);
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'Nunito Sans', sans-serif;
+  line-height: 1.7;
+  overflow-x: hidden;
+}
+
+h1, h2, h3, h4 { font-family: 'Playfair Display', serif; font-weight: 700; }
+
+.container { max-width: 1200px; margin: 0 auto; padding: 0 32px; }
+
+/* === HERO === */
+.hero {
+  min-height: 50vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 80px 32px 48px;
+  position: relative;
+  overflow: hidden;
+}
+.hero::before {
+  content: '';
+  position: absolute;
+  top: -40%;
+  left: -20%;
+  width: 600px;
+  height: 600px;
+  background: radial-gradient(circle, rgba(255,107,53,0.12) 0%, transparent 70%);
+  border-radius: 50%;
+  pointer-events: none;
+}
+.hero::after {
+  content: '';
+  position: absolute;
+  bottom: -30%;
+  right: -10%;
+  width: 500px;
+  height: 500px;
+  background: radial-gradient(circle, rgba(123,97,255,0.1) 0%, transparent 70%);
+  border-radius: 50%;
+  pointer-events: none;
+}
+.hero h1 {
+  font-size: clamp(2.2rem, 5vw, 3.5rem);
+  line-height: 1.2;
+  margin-bottom: 16px;
+  position: relative;
+}
+.hero h1 span {
+  background: var(--gradient1);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.hero p {
+  font-size: 1.1rem;
+  color: var(--text-muted);
+  max-width: 600px;
+  margin: 0 auto;
+  position: relative;
+}
+
+/* === SECTIONS === */
+.section {
+  padding: 64px 0;
+}
+.section-title {
+  font-size: clamp(1.6rem, 3.5vw, 2.2rem);
+  margin-bottom: 12px;
+}
+.section-subtitle {
+  color: var(--text-muted);
+  font-size: 1rem;
+  margin-bottom: 40px;
+  max-width: 650px;
+}
+
+/* === SEGMENT NAV === */
+.seg-nav {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-bottom: 40px;
+}
+.seg-btn {
+  padding: 12px 24px;
+  border-radius: 50px;
+  border: 1.5px solid var(--border);
+  background: transparent;
+  color: var(--text-muted);
+  font-family: 'Nunito Sans', sans-serif;
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  white-space: nowrap;
+}
+.seg-btn:hover { border-color: var(--accent); color: var(--text); }
+.seg-btn.active {
+  background: var(--gradient1);
+  border-color: transparent;
+  color: #0F0E17;
+}
+.seg-btn[data-seg="2"].active { background: var(--gradient2); }
+.seg-btn[data-seg="3"].active { background: var(--gradient3); }
+.seg-btn[data-seg="4"].active { background: var(--gradient4); }
+
+/* === SEGMENT PANEL === */
+.seg-panel { display: none; animation: fadeIn 0.4s ease; }
+.seg-panel.active { display: block; }
+
+@keyframes fadeIn { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: translateY(0); } }
+
+/* === CARDS === */
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 24px;
+  margin-bottom: 40px;
+}
+.card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 28px;
+  transition: transform 0.2s ease, border-color 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+.card:hover { transform: translateY(-3px); border-color: rgba(255,255,255,0.1); }
+.card-icon {
+  width: 48px;
+  height: 48px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  margin-bottom: 16px;
+  flex-shrink: 0;
+}
+.card h4 {
+  font-size: 1.1rem;
+  margin-bottom: 10px;
+  font-family: 'Nunito Sans', sans-serif;
+  font-weight: 700;
+}
+.card p, .card li {
+  color: var(--text-muted);
+  font-size: 0.9rem;
+  line-height: 1.7;
+}
+.card ul {
+  list-style: none;
+  padding: 0;
+}
+.card ul li {
+  padding: 6px 0;
+  padding-left: 20px;
+  position: relative;
+}
+.card ul li::before {
+  content: '→';
+  position: absolute;
+  left: 0;
+  color: var(--accent);
+  font-weight: 700;
+}
+
+.icon-pain { background: rgba(255,107,53,0.15); color: var(--accent); }
+.icon-value { background: rgba(123,97,255,0.15); color: var(--accent3); }
+.icon-success { background: rgba(44,182,125,0.15); color: var(--accent4); }
+.icon-expect { background: rgba(247,201,72,0.15); color: var(--accent2); }
+
+/* === PROFILE BAR === */
+.profile-bar {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 28px 32px;
+  display: flex;
+  gap: 32px;
+  flex-wrap: wrap;
+  align-items: center;
+  margin-bottom: 40px;
+}
+.profile-avatar {
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2rem;
+  flex-shrink: 0;
+}
+.profile-info { flex: 1; min-width: 200px; }
+.profile-info h3 { font-size: 1.3rem; margin-bottom: 4px; font-family: 'Nunito Sans', sans-serif; }
+.profile-info p { color: var(--text-muted); font-size: 0.9rem; }
+.profile-tags { display: flex; gap: 8px; flex-wrap: wrap; }
+.tag {
+  padding: 6px 14px;
+  border-radius: 50px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  border: 1px solid;
+}
+
+/* === FUNNEL === */
+.funnel-container {
+  margin: 40px 0;
+}
+.funnel-title {
+  font-size: 1.3rem;
+  margin-bottom: 24px;
+}
+.funnel-step {
+  display: flex;
+  align-items: flex-start;
+  gap: 20px;
+  margin-bottom: 0;
+  position: relative;
+  padding: 20px 0;
+}
+.funnel-num {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 800;
+  font-size: 0.95rem;
+  flex-shrink: 0;
+  position: relative;
+  z-index: 2;
+}
+.funnel-line {
+  position: absolute;
+  left: 19px;
+  top: 60px;
+  bottom: 0;
+  width: 2px;
+  z-index: 1;
+}
+.funnel-step:last-child .funnel-line { display: none; }
+.funnel-content h4 {
+  font-family: 'Nunito Sans', sans-serif;
+  font-weight: 700;
+  font-size: 1rem;
+  margin-bottom: 4px;
+}
+.funnel-content p {
+  color: var(--text-muted);
+  font-size: 0.88rem;
+}
+
+/* seg1 colors */
+.seg1 .funnel-num { background: rgba(255,107,53,0.2); color: var(--accent); }
+.seg1 .funnel-line { background: rgba(255,107,53,0.15); }
+.seg1 .profile-avatar { background: rgba(255,107,53,0.15); }
+.seg1 .tag { color: var(--accent); border-color: rgba(255,107,53,0.3); }
+
+.seg2 .funnel-num { background: rgba(123,97,255,0.2); color: var(--accent3); }
+.seg2 .funnel-line { background: rgba(123,97,255,0.15); }
+.seg2 .profile-avatar { background: rgba(123,97,255,0.15); }
+.seg2 .tag { color: var(--accent3); border-color: rgba(123,97,255,0.3); }
+
+.seg3 .funnel-num { background: rgba(247,201,72,0.2); color: var(--accent2); }
+.seg3 .funnel-line { background: rgba(247,201,72,0.15); }
+.seg3 .profile-avatar { background: rgba(247,201,72,0.15); }
+.seg3 .tag { color: var(--accent2); border-color: rgba(247,201,72,0.3); }
+
+.seg4 .funnel-num { background: rgba(44,182,125,0.2); color: var(--accent4); }
+.seg4 .funnel-line { background: rgba(44,182,125,0.15); }
+.seg4 .profile-avatar { background: rgba(44,182,125,0.15); }
+.seg4 .tag { color: var(--accent4); border-color: rgba(44,182,125,0.3); }
+
+/* === CJM TIMELINE === */
+.cjm-section {
+  margin-top: 48px;
+  padding-top: 48px;
+  border-top: 1px solid var(--border);
+}
+.cjm-title {
+  font-size: 1.3rem;
+  margin-bottom: 8px;
+}
+.cjm-sub {
+  color: var(--text-muted);
+  font-size: 0.9rem;
+  margin-bottom: 32px;
+}
+.cjm-timeline {
+  position: relative;
+  padding-left: 0;
+}
+.cjm-phase {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 24px;
+  margin-bottom: 16px;
+  transition: border-color 0.3s ease;
+}
+.cjm-phase:hover { border-color: rgba(255,255,255,0.1); }
+.cjm-phase-header {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 16px;
+  cursor: pointer;
+}
+.cjm-phase-num {
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 800;
+  font-size: 0.85rem;
+  flex-shrink: 0;
+}
+.cjm-phase-name {
+  font-family: 'Nunito Sans', sans-serif;
+  font-weight: 700;
+  font-size: 1rem;
+  flex: 1;
+}
+.cjm-phase-toggle {
+  color: var(--text-dim);
+  font-size: 1.2rem;
+  transition: transform 0.3s;
+}
+.cjm-phase.open .cjm-phase-toggle { transform: rotate(180deg); }
+
+.cjm-detail {
+  display: none;
+}
+.cjm-phase.open .cjm-detail { display: block; }
+
+.cjm-row {
+  display: grid;
+  grid-template-columns: 110px 1fr;
+  gap: 8px;
+  padding: 8px 0;
+  border-top: 1px solid var(--border);
+}
+.cjm-label {
+  font-size: 0.78rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  padding-top: 2px;
+}
+.cjm-value {
+  color: var(--text-muted);
+  font-size: 0.88rem;
+}
+
+.seg1 .cjm-phase-num { background: rgba(255,107,53,0.2); color: var(--accent); }
+.seg2 .cjm-phase-num { background: rgba(123,97,255,0.2); color: var(--accent3); }
+.seg3 .cjm-phase-num { background: rgba(247,201,72,0.2); color: var(--accent2); }
+.seg4 .cjm-phase-num { background: rgba(44,182,125,0.2); color: var(--accent4); }
+
+.seg1 .cjm-label { color: var(--accent); }
+.seg2 .cjm-label { color: var(--accent3); }
+.seg3 .cjm-label { color: var(--accent2); }
+.seg4 .cjm-label { color: var(--accent4); }
+
+/* === OVERVIEW GRID === */
+.overview-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 20px;
+  margin-bottom: 48px;
+}
+.overview-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 24px;
+  text-align: center;
+  transition: transform 0.2s ease;
+  cursor: pointer;
+}
+.overview-card:hover { transform: translateY(-3px); }
+.oc-emoji { font-size: 2.2rem; margin-bottom: 10px; }
+.oc-title {
+  font-family: 'Nunito Sans', sans-serif;
+  font-weight: 700;
+  font-size: 1.05rem;
+  margin-bottom: 6px;
+}
+.oc-desc {
+  color: var(--text-muted);
+  font-size: 0.85rem;
+}
+.oc-age {
+  display: inline-block;
+  margin-top: 10px;
+  padding: 4px 12px;
+  border-radius: 50px;
+  font-size: 0.78rem;
+  font-weight: 600;
+}
+
+/* === POSITIONING === */
+.positioning {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 32px;
+  margin: 48px 0;
+}
+.positioning h3 {
+  font-size: 1.3rem;
+  margin-bottom: 20px;
+}
+.pos-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+}
+.pos-col h4 {
+  font-family: 'Nunito Sans', sans-serif;
+  font-weight: 700;
+  margin-bottom: 12px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.pos-col ul {
+  list-style: none;
+  padding: 0;
+}
+.pos-col li {
+  color: var(--text-muted);
+  font-size: 0.9rem;
+  padding: 6px 0;
+  padding-left: 16px;
+  position: relative;
+}
+.pos-bad li::before { content: '✗'; position: absolute; left: 0; color: #FF4444; font-weight: 700; }
+.pos-good li::before { content: '✓'; position: absolute; left: 0; color: var(--accent4); font-weight: 700; }
+
+@media (max-width: 768px) {
+  .container { padding: 0 20px; }
+  .pos-grid { grid-template-columns: 1fr; }
+  .profile-bar { padding: 20px; gap: 16px; }
+  .cjm-row { grid-template-columns: 1fr; }
+  .cjm-label { padding-bottom: 0; }
+  .seg-btn { padding: 10px 18px; font-size: 0.85rem; }
+}
+
+/* === FOOTER === */
+.footer {
+  text-align: center;
+  padding: 48px 0;
+  color: var(--text-dim);
+  font-size: 0.85rem;
+  border-top: 1px solid var(--border);
+}
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<section class="hero">
+  <div>
+    <h1>Стратегия <span>вокальной студии</span></h1>
+    <p>Сегменты аудитории • Боли и ценности • Воронки • CJM — всё в одном документе</p>
+  </div>
+</section>
+
+<div class="container">
+
+<!-- POSITIONING -->
+<section class="positioning">
+  <h3>🎤 Почему ваша студия — не «ещё одна караоке-школа»</h3>
+  <div class="pos-grid">
+    <div class="pos-col pos-bad">
+      <h4><span style="color:#FF4444">●</span> Типичная студия в Алматы</h4>
+      <ul>
+        <li>Устаревшие «совковские» методики</li>
+        <li>Мифы про «опору» и «напряги живот»</li>
+        <li>Караоке-формат без методологии</li>
+        <li>Ученики уходят охрипшими</li>
+        <li>Нет комьюнити — пришёл-ушёл</li>
+        <li>Нет результата — нет понимания</li>
+      </ul>
+    </div>
+    <div class="pos-col pos-good">
+      <h4><span style="color: var(--accent4)">●</span> Ваша студия</h4>
+      <ul>
+        <li>Мировые методики (EVT) — через анатомию</li>
+        <li>Осознанное управление голосом</li>
+        <li>Квартирники, концерты, звукозапись</li>
+        <li>Комьюнити: дружба за пределами студии</li>
+        <li>Видимый результат + понимание «почему»</li>
+        <li>Среда, в которой хочется оставаться</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- SEGMENTS OVERVIEW -->
+<section class="section">
+  <h2 class="section-title">4 ключевых сегмента</h2>
+  <p class="section-subtitle">Те, с кем максимально комфортно работать — мотивированные, адекватные, готовые вкладываться.</p>
+
+  <div class="overview-grid">
+    <div class="overview-card" onclick="switchSeg(1)">
+      <div class="oc-emoji">🎙️</div>
+      <div class="oc-title">«Хочу петь для себя»</div>
+      <div class="oc-desc">Взрослые, которые всегда мечтали петь, но «не было времени»</div>
+      <div class="oc-age" style="background:rgba(255,107,53,0.15); color:var(--accent)">25–40 лет</div>
+    </div>
+    <div class="overview-card" onclick="switchSeg(2)">
+      <div class="oc-emoji">💼</div>
+      <div class="oc-title">«Голос — мой инструмент»</div>
+      <div class="oc-desc">Те, кому голос нужен для работы: спикеры, блогеры, ведущие</div>
+      <div class="oc-age" style="background:rgba(123,97,255,0.15); color:var(--accent3)">25–45 лет</div>
+    </div>
+    <div class="overview-card" onclick="switchSeg(3)">
+      <div class="oc-emoji">🎶</div>
+      <div class="oc-title">«Пою, но упёрся в потолок»</div>
+      <div class="oc-desc">Самоучки или бывшие ученики других студий, ищущие рост</div>
+      <div class="oc-age" style="background:rgba(247,201,72,0.15); color:var(--accent2)">20–35 лет</div>
+    </div>
+    <div class="overview-card" onclick="switchSeg(4)">
+      <div class="oc-emoji">🌱</div>
+      <div class="oc-title">«Новый я — новое хобби»</div>
+      <div class="oc-desc">Ищут антистресс и новый круг общения через творчество</div>
+      <div class="oc-age" style="background:rgba(44,182,125,0.15); color:var(--accent4)">28–45 лет</div>
+    </div>
+  </div>
+</section>
+
+<!-- SEGMENT DETAILS -->
+<section class="section" id="segments">
+  <div class="seg-nav">
+    <button class="seg-btn active" data-seg="1" onclick="switchSeg(1)">🎙️ Хочу петь для себя</button>
+    <button class="seg-btn" data-seg="2" onclick="switchSeg(2)">💼 Голос — инструмент</button>
+    <button class="seg-btn" data-seg="3" onclick="switchSeg(3)">🎶 Упёрся в потолок</button>
+    <button class="seg-btn" data-seg="4" onclick="switchSeg(4)">🌱 Новое хобби</button>
+  </div>
+
+  <!-- ===== SEGMENT 1 ===== -->
+  <div class="seg-panel seg1 active" id="seg1">
+    <div class="profile-bar">
+      <div class="profile-avatar">🎙️</div>
+      <div class="profile-info">
+        <h3>Айгуль, 31 год</h3>
+        <p>Маркетолог в крупной компании. Всегда пела в машине и мечтала выступить. Боится, что «нет данных» и «уже поздно».</p>
+      </div>
+      <div class="profile-tags">
+        <span class="tag">25–40 лет</span>
+        <span class="tag">Доход средний+</span>
+        <span class="tag">Первый опыт</span>
+      </div>
+    </div>
+
+    <div class="card-grid">
+      <div class="card">
+        <div class="card-icon icon-pain">🔥</div>
+        <h4>Боли</h4>
+        <ul>
+          <li>«У меня нет голоса / слуха» — страх начать</li>
+          <li>Стесняется петь при других людях</li>
+          <li>Не понимает, с чего начать — всё кажется сложным</li>
+          <li>Боится попасть к «караоке-учителю» без результата</li>
+          <li>Голос зажат, быстро устаёт при пении</li>
+        </ul>
+      </div>
+      <div class="card">
+        <div class="card-icon icon-value">💎</div>
+        <h4>Смыслы и ценности</h4>
+        <ul>
+          <li>Самореализация: «я могу больше, чем офис»</li>
+          <li>Кайф от процесса — хочет получать удовольствие</li>
+          <li>Важен научный подход, а не «пой громче»</li>
+          <li>Ценит экспертизу и современные методики</li>
+          <li>Хочет принадлежать к творческому комьюнити</li>
+        </ul>
+      </div>
+      <div class="card">
+        <div class="card-icon icon-success">🎯</div>
+        <h4>Критерии успеха</h4>
+        <ul>
+          <li>Спеть песню целиком без зажимов</li>
+          <li>Выступить на квартирнике перед близкими</li>
+          <li>Понять свой голос: что могу, что нужно развивать</li>
+          <li>Записать кавер в студии звукозаписи</li>
+          <li>Петь уверенно в караоке / компании</li>
+        </ul>
+      </div>
+      <div class="card">
+        <div class="card-icon icon-expect">👩‍🏫</div>
+        <h4>Что ждут от педагога</h4>
+        <ul>
+          <li>Терпение и безоценочность на первых уроках</li>
+          <li>Объяснения «почему так» — через анатомию, не магию</li>
+          <li>Поддержку и мотивацию, чтобы не бросить</li>
+          <li>Чёткий план: «вот куда мы идём»</li>
+          <li>Бережное отношение к голосу</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- FUNNEL SEG1 -->
+    <div class="funnel-container">
+      <h3 class="funnel-title">Воронка для сегмента</h3>
+
+      <div class="funnel-step">
+        <div class="funnel-num">1</div>
+        <div class="funnel-line"></div>
+        <div class="funnel-content">
+          <h4>Осведомлённость</h4>
+          <p>Reels/Shorts с «до/после» — голос ученика на 1 уроке vs через 2 месяца. Тексты: «Думаешь, что тебе медведь на ухо наступил?». Отзывы новичков в сторис.</p>
+        </div>
+      </div>
+      <div class="funnel-step">
+        <div class="funnel-num">2</div>
+        <div class="funnel-line"></div>
+        <div class="funnel-content">
+          <h4>Интерес</h4>
+          <p>Экспертный контент: «3 мифа о вокале» (про опору, про "нет данных"). Видео-разборы ошибок. Бесплатный чек-лист «Как понять, есть ли у тебя голос».</p>
+        </div>
+      </div>
+      <div class="funnel-step">
+        <div class="funnel-num">3</div>
+        <div class="funnel-line"></div>
+        <div class="funnel-content">
+          <h4>Решение</h4>
+          <p>Пробный урок (платный/со скидкой). На нём — быстрый результат: «вот как звучит твой голос, когда ты его не зажимаешь». Показать план развития.</p>
+        </div>
+      </div>
+      <div class="funnel-step">
+        <div class="funnel-num">4</div>
+        <div class="funnel-line"></div>
+        <div class="funnel-content">
+          <h4>Покупка</h4>
+          <p>Абонемент на 4 занятия у младшего (45 000₸) — низкий порог входа. Объяснить, что 4 урока = первый ощутимый результат.</p>
+        </div>
+      </div>
+      <div class="funnel-step">
+        <div class="funnel-num">5</div>
+        <div class="funnel-line"></div>
+        <div class="funnel-content">
+          <h4>Удержание</h4>
+          <p>Приглашение в ансамбль (группу). Квартирник как цель через 2–3 месяца. Комьюнити: чат, совместные вылазки. Запись кавера как «выпускной».</p>
+        </div>
+      </div>
+      <div class="funnel-step">
+        <div class="funnel-num">6</div>
+        <div class="funnel-content">
+          <h4>Адвокат бренда</h4>
+          <p>Приглашает друзей на квартирник → друзья видят результат → записываются. Делится записями каверов. Рекомендации в чатах и соцсетях.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- CJM SEG1 -->
+    <div class="cjm-section">
+      <h3 class="cjm-title">CJM — Customer Journey Map</h3>
+      <p class="cjm-sub">Путь клиента от мечты до результата. Нажмите на фазу, чтобы раскрыть детали.</p>
+
+      <div class="cjm-timeline">
+        <div class="cjm-phase open" onclick="togglePhase(this)">
+          <div class="cjm-phase-header">
+            <div class="cjm-phase-num">1</div>
+            <div class="cjm-phase-name">«Мечтаю, но боюсь»</div>
+            <div class="cjm-phase-toggle">▾</div>
+          </div>
+          <div class="cjm-detail">
+            <div class="cjm-row"><div class="cjm-label">Действия</div><div class="cjm-value">Смотрит вокальный контент в Reels, ищет «вокал Алматы» в Instagram, читает отзывы</div></div>
+            <div class="cjm-row"><div class="cjm-label">Мысли</div><div class="cjm-value">«А вдруг у меня правда нет голоса? А если преподаватель засмеёт?»</div></div>
+            <div class="cjm-row"><div class="cjm-label">Эмоции</div><div class="cjm-value">Мечтательность → неуверенность → страх первого шага</div></div>
+            <div class="cjm-row"><div class="cjm-label">Точки контакта</div><div class="cjm-value">Instagram, YouTube Shorts, рекомендации друзей, 2GIS</div></div>
+            <div class="cjm-row"><div class="cjm-label">Задача бизнеса</div><div class="cjm-value">Контент, который снимает страх: «голос есть у каждого», «вот что мы делаем на первом уроке» (без пафоса)</div></div>
+          </div>
+        </div>
+
+        <div class="cjm-phase" onclick="togglePhase(this)">
+          <div class="cjm-phase-header">
+            <div class="cjm-phase-num">2</div>
+            <div class="cjm-phase-name">Пробный урок</div>
+            <div class="cjm-phase-toggle">▾</div>
+          </div>
+          <div class="cjm-detail">
+            <div class="cjm-row"><div class="cjm-label">Действия</div><div class="cjm-value">Пишет в Direct/WhatsApp, приходит на пробный урок (нервничает)</div></div>
+            <div class="cjm-row"><div class="cjm-label">Мысли</div><div class="cjm-value">«Надеюсь, не будет стыдно. Хочу понять, смогу ли я вообще»</div></div>
+            <div class="cjm-row"><div class="cjm-label">Эмоции</div><div class="cjm-value">Волнение → удивление («о, у меня получается!») → воодушевление</div></div>
+            <div class="cjm-row"><div class="cjm-label">Точки контакта</div><div class="cjm-value">WhatsApp-переписка, кабинет студии, первый живой контакт с педагогом</div></div>
+            <div class="cjm-row"><div class="cjm-label">Задача бизнеса</div><div class="cjm-value">Дать микро-результат за 50 минут: «слышишь разницу?». Показать план, но не давить на покупку</div></div>
+          </div>
+        </div>
+
+        <div class="cjm-phase" onclick="togglePhase(this)">
+          <div class="cjm-phase-header">
+            <div class="cjm-phase-num">3</div>
+            <div class="cjm-phase-name">Первый абонемент</div>
+            <div class="cjm-phase-toggle">▾</div>
+          </div>
+          <div class="cjm-detail">
+            <div class="cjm-row"><div class="cjm-label">Действия</div><div class="cjm-value">Покупает абонемент на 4 занятия, начинает регулярные посещения</div></div>
+            <div class="cjm-row"><div class="cjm-label">Мысли</div><div class="cjm-value">«Ладно, 4 раза — это не страшно. Посмотрю, будет ли прогресс»</div></div>
+            <div class="cjm-row"><div class="cjm-label">Эмоции</div><div class="cjm-value">Осторожный оптимизм → растущая уверенность → привязанность к процессу</div></div>
+            <div class="cjm-row"><div class="cjm-label">Точки контакта</div><div class="cjm-value">Уроки, обратная связь от педагога, первые домашние задания</div></div>
+            <div class="cjm-row"><div class="cjm-label">Задача бизнеса</div><div class="cjm-value">Фиксировать прогресс: «на первом уроке было так, сейчас — так». Записать голос «до» для сравнения потом</div></div>
+          </div>
+        </div>
+
+        <div class="cjm-phase" onclick="togglePhase(this)">
+          <div class="cjm-phase-header">
+            <div class="cjm-phase-num">4</div>
+            <div class="cjm-phase-name">Вовлечение в комьюнити</div>
+            <div class="cjm-phase-toggle">▾</div>
+          </div>
+          <div class="cjm-detail">
+            <div class="cjm-row"><div class="cjm-label">Действия</div><div class="cjm-value">Приходит на ансамбль, знакомится с другими учениками, вступает в чат студии</div></div>
+            <div class="cjm-row"><div class="cjm-label">Мысли</div><div class="cjm-value">«О, тут классные люди! Это не просто уроки — это моё место»</div></div>
+            <div class="cjm-row"><div class="cjm-label">Эмоции</div><div class="cjm-value">Принадлежность → радость → «наконец нашла своих»</div></div>
+            <div class="cjm-row"><div class="cjm-label">Точки контакта</div><div class="cjm-value">Групповые уроки, чат студии, совместные встречи вне студии</div></div>
+            <div class="cjm-row"><div class="cjm-label">Задача бизнеса</div><div class="cjm-value">Проактивно приглашать в ансамбль к 2-му месяцу. Чат = не только про уроки, но и про жизнь</div></div>
+          </div>
+        </div>
+
+        <div class="cjm-phase" onclick="togglePhase(this)">
+          <div class="cjm-phase-header">
+            <div class="cjm-phase-num">5</div>
+            <div class="cjm-phase-name">Первое выступление</div>
+            <div class="cjm-phase-toggle">▾</div>
+          </div>
+          <div class="cjm-detail">
+            <div class="cjm-row"><div class="cjm-label">Действия</div><div class="cjm-value">Выступает на квартирнике, приглашает друзей/семью, записывает кавер в студии</div></div>
+            <div class="cjm-row"><div class="cjm-label">Мысли</div><div class="cjm-value">«Не могу поверить, что я это сделала. Это лучший момент за год»</div></div>
+            <div class="cjm-row"><div class="cjm-label">Эмоции</div><div class="cjm-value">Волнение → эйфория → гордость → благодарность педагогу</div></div>
+            <div class="cjm-row"><div class="cjm-label">Точки контакта</div><div class="cjm-value">Квартирник, студия звукозаписи, видео выступления для соцсетей</div></div>
+            <div class="cjm-row"><div class="cjm-label">Задача бизнеса</div><div class="cjm-value">Снять видео, помочь поделиться. Каждый квартирник = рекламная кампания через уста учеников</div></div>
+          </div>
+        </div>
+
+        <div class="cjm-phase" onclick="togglePhase(this)">
+          <div class="cjm-phase-header">
+            <div class="cjm-phase-num">6</div>
+            <div class="cjm-phase-name">Лояльный ученик</div>
+            <div class="cjm-phase-toggle">▾</div>
+          </div>
+          <div class="cjm-detail">
+            <div class="cjm-row"><div class="cjm-label">Действия</div><div class="cjm-value">Продлевает абонемент, участвует в тематических концертах, приводит знакомых</div></div>
+            <div class="cjm-row"><div class="cjm-label">Мысли</div><div class="cjm-value">«Это уже часть моей жизни. Хочу расти дальше»</div></div>
+            <div class="cjm-row"><div class="cjm-label">Эмоции</div><div class="cjm-value">Стабильная привязанность, чувство роста, лояльность к педагогу и студии</div></div>
+            <div class="cjm-row"><div class="cjm-label">Точки контакта</div><div class="cjm-value">Регулярные уроки, концерты, запись в студии, сарафан</div></div>
+            <div class="cjm-row"><div class="cjm-label">Задача бизнеса</div><div class="cjm-value">Новые челленджи: тематические концерты, дуэты, переход к ведущему педагогу. Программа «приведи друга»</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== SEGMENT 2 ===== -->
+  <div class="seg-panel seg2" id="seg2">
+    <div class="profile-bar">
+      <div class="profile-avatar">💼</div>
+      <div class="profile-info">
+        <h3>Данияр, 34 года</h3>
+        <p>Ведущий мероприятий / блогер. Голос садится после выступлений, звучит «плоско» на записи. Ищет, как сделать голос инструментом.</p>
+      </div>
+      <div class="profile-tags">
+        <span class="tag">25–45 лет</span>
+        <span class="tag">Доход выше среднего</span>
+        <span class="tag">Прикладная цель</span>
+      </div>
+    </div>
+
+    <div class="card-grid">
+      <div class="card">
+        <div class="card-icon icon-pain">🔥</div>
+        <h4>Боли</h4>
+        <ul>
+          <li>Голос быстро устаёт — садится после выступлений</li>
+          <li>Звучит «невыразительно» на записи / камере</li>
+          <li>Не умеет управлять громкостью и тембром</li>
+          <li>Зажимы в горле, особенно при волнении</li>
+          <li>Не нашёл педагога, который работает с «речевым» голосом</li>
+        </ul>
+      </div>
+      <div class="card">
+        <div class="card-icon icon-value">💎</div>
+        <h4>Смыслы и ценности</h4>
+        <ul>
+          <li>Голос = профессиональный капитал</li>
+          <li>Инвестиция в себя, которая окупается</li>
+          <li>Ценит эффективность: хочет результат быстро</li>
+          <li>Важен научный подход — «покажи мне почему»</li>
+          <li>Хочет быть запоминающимся, выделяться звучанием</li>
+        </ul>
+      </div>
+      <div class="card">
+        <div class="card-icon icon-success">🎯</div>
+        <h4>Критерии успеха</h4>
+        <ul>
+          <li>Голос не устаёт после 2-часового эфира/ивента</li>
+          <li>Звучит ярко и уверенно на записи</li>
+          <li>Умеет «переключать» голос: тёплый / энергичный</li>
+          <li>Снять зажимы — голос расслаблен и свободен</li>
+          <li>Коллеги замечают изменения</li>
+        </ul>
+      </div>
+      <div class="card">
+        <div class="card-icon icon-expect">👩‍🏫</div>
+        <h4>Что ждут от педагога</h4>
+        <ul>
+          <li>Конкретные техники, применимые сразу</li>
+          <li>Работу через анатомию: «что напрягать, что расслаблять»</li>
+          <li>Уважение к графику — без лишней воды</li>
+          <li>Адаптацию под задачи: не «петь», а «звучать»</li>
+          <li>Прогресс, который можно измерить</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="funnel-container">
+      <h3 class="funnel-title">Воронка для сегмента</h3>
+      <div class="funnel-step">
+        <div class="funnel-num">1</div><div class="funnel-line"></div>
+        <div class="funnel-content">
+          <h4>Осведомлённость</h4>
+          <p>Контент: «Почему твой голос садится после выступлений» — разбор анатомии. Партнёрства с коворкингами, бизнес-клубами Алматы.</p>
+        </div>
+      </div>
+      <div class="funnel-step">
+        <div class="funnel-num">2</div><div class="funnel-line"></div>
+        <div class="funnel-content">
+          <h4>Интерес</h4>
+          <p>Мини-вебинар / прямой эфир: «3 упражнения, чтобы голос не уставал». Кейс-стори блогера, который пришёл за «голосом для камеры».</p>
+        </div>
+      </div>
+      <div class="funnel-step">
+        <div class="funnel-num">3</div><div class="funnel-line"></div>
+        <div class="funnel-content">
+          <h4>Решение</h4>
+          <p>Индивидуальная диагностика голоса (пробный урок). Показать на первом уроке: «вот что ты делаешь не так, вот как исправить».</p>
+        </div>
+      </div>
+      <div class="funnel-step">
+        <div class="funnel-num">4</div><div class="funnel-line"></div>
+        <div class="funnel-content">
+          <h4>Покупка</h4>
+          <p>Абонемент на 4 занятия у ведущего педагога (56 000₸). Позиционирование: инвестиция в профессиональный рост.</p>
+        </div>
+      </div>
+      <div class="funnel-step">
+        <div class="funnel-num">5</div><div class="funnel-line"></div>
+        <div class="funnel-content">
+          <h4>Удержание</h4>
+          <p>Запись «до/после» голоса для портфолио. Работа на камеру в студии звукозаписи. Персональная программа развития.</p>
+        </div>
+      </div>
+      <div class="funnel-step">
+        <div class="funnel-num">6</div>
+        <div class="funnel-content">
+          <h4>Адвокат бренда</h4>
+          <p>Рекомендации в своей профессиональной среде. Коллаборации: «мой педагог по вокалу» в блоге. Приводит коллег.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- CJM SEG2 -->
+    <div class="cjm-section">
+      <h3 class="cjm-title">CJM — Customer Journey Map</h3>
+      <p class="cjm-sub">Путь профессионала к сильному голосу.</p>
+      <div class="cjm-timeline">
+        <div class="cjm-phase open" onclick="togglePhase(this)">
+          <div class="cjm-phase-header"><div class="cjm-phase-num">1</div><div class="cjm-phase-name">«Голос подводит»</div><div class="cjm-phase-toggle">▾</div></div>
+          <div class="cjm-detail">
+            <div class="cjm-row"><div class="cjm-label">Действия</div><div class="cjm-value">Замечает, что голос садится/хрипит. Гуглит «как укрепить голос», «вокальные упражнения для речи»</div></div>
+            <div class="cjm-row"><div class="cjm-label">Мысли</div><div class="cjm-value">«Это мешает моей карьере. Но мне нужен не пение, а постановка голоса — кто это делает?»</div></div>
+            <div class="cjm-row"><div class="cjm-label">Эмоции</div><div class="cjm-value">Раздражение → прагматичный поиск решения</div></div>
+            <div class="cjm-row"><div class="cjm-label">Точки контакта</div><div class="cjm-value">Google, Instagram, рекомендации коллег</div></div>
+            <div class="cjm-row"><div class="cjm-label">Задача бизнеса</div><div class="cjm-value">Контент позиционирующий студию как место для «прокачки голоса», не только пения. SEO на «постановка голоса Алматы»</div></div>
+          </div>
+        </div>
+        <div class="cjm-phase" onclick="togglePhase(this)">
+          <div class="cjm-phase-header"><div class="cjm-phase-num">2</div><div class="cjm-phase-name">Диагностика голоса</div><div class="cjm-phase-toggle">▾</div></div>
+          <div class="cjm-detail">
+            <div class="cjm-row"><div class="cjm-label">Действия</div><div class="cjm-value">Приходит на пробный урок с конкретным запросом: «голос садится», «хочу звучать увереннее»</div></div>
+            <div class="cjm-row"><div class="cjm-label">Мысли</div><div class="cjm-value">«Если за 50 минут покажут что-то конкретное — продолжу»</div></div>
+            <div class="cjm-row"><div class="cjm-label">Эмоции</div><div class="cjm-value">Прагматизм → удивление от анатомического подхода → доверие</div></div>
+            <div class="cjm-row"><div class="cjm-label">Задача бизнеса</div><div class="cjm-value">Показать экспертизу с первой минуты. Объяснить через анатомию, что именно не так. Дать 1 упражнение, которое работает сразу</div></div>
+          </div>
+        </div>
+        <div class="cjm-phase" onclick="togglePhase(this)">
+          <div class="cjm-phase-header"><div class="cjm-phase-num">3</div><div class="cjm-phase-name">Интенсивная работа</div><div class="cjm-phase-toggle">▾</div></div>
+          <div class="cjm-detail">
+            <div class="cjm-row"><div class="cjm-label">Действия</div><div class="cjm-value">Покупает абонемент, ходит регулярно, применяет техники на работе</div></div>
+            <div class="cjm-row"><div class="cjm-label">Мысли</div><div class="cjm-value">«Коллеги заметили, что я стал звучать по-другому»</div></div>
+            <div class="cjm-row"><div class="cjm-label">Эмоции</div><div class="cjm-value">Удовлетворение → рост уверенности → мотивация продолжать</div></div>
+            <div class="cjm-row"><div class="cjm-label">Задача бизнеса</div><div class="cjm-value">Давать «домашки», применимые к его работе. Отслеживать прогресс: записи голоса каждый месяц</div></div>
+          </div>
+        </div>
+        <div class="cjm-phase" onclick="togglePhase(this)">
+          <div class="cjm-phase-header"><div class="cjm-phase-num">4</div><div class="cjm-phase-name">Расширение запроса</div><div class="cjm-phase-toggle">▾</div></div>
+          <div class="cjm-detail">
+            <div class="cjm-row"><div class="cjm-label">Действия</div><div class="cjm-value">Начинает интересоваться пением, пробует записать кавер, приходит на концерт студии</div></div>
+            <div class="cjm-row"><div class="cjm-label">Мысли</div><div class="cjm-value">«А ведь я ещё и петь могу! Это кайф»</div></div>
+            <div class="cjm-row"><div class="cjm-label">Эмоции</div><div class="cjm-value">Приятное удивление → вдохновение → желание большего</div></div>
+            <div class="cjm-row"><div class="cjm-label">Задача бизнеса</div><div class="cjm-value">Мягко предложить попробовать ансамбль. Пригласить на тематический концерт как зрителя, потом как участника</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== SEGMENT 3 ===== -->
+  <div class="seg-panel seg3" id="seg3">
+    <div class="profile-bar">
+      <div class="profile-avatar">🎶</div>
+      <div class="profile-info">
+        <h3>Тимур, 27 лет</h3>
+        <p>Самоучка, поёт 3 года. Был в другой студии — «учили непонятно чему». Голос зажат на высоких, не понимает, что делать дальше.</p>
+      </div>
+      <div class="profile-tags">
+        <span class="tag">20–35 лет</span>
+        <span class="tag">Доход средний</span>
+        <span class="tag">Есть опыт</span>
+      </div>
+    </div>
+
+    <div class="card-grid">
+      <div class="card">
+        <div class="card-icon icon-pain">🔥</div>
+        <h4>Боли</h4>
+        <ul>
+          <li>Дошёл до потолка — не может взять высокие ноты</li>
+          <li>Прошлый педагог давал «караоке», а не технику</li>
+          <li>Зажимы, которые не получается снять самому</li>
+          <li>Голос звучит «каменно», нет гибкости</li>
+          <li>Много противоречивой информации: YouTube vs педагоги</li>
+        </ul>
+      </div>
+      <div class="card">
+        <div class="card-icon icon-value">💎</div>
+        <h4>Смыслы и ценности</h4>
+        <ul>
+          <li>Вокал — серьёзное увлечение, не просто хобби</li>
+          <li>Хочет понимать «механику» голоса</li>
+          <li>Ценит глубину: готов разбираться в анатомии</li>
+          <li>Амбиции: хочет петь на уровне, которым гордится</li>
+          <li>Ищет «своего» педагога, которому доверяет</li>
+        </ul>
+      </div>
+      <div class="card">
+        <div class="card-icon icon-success">🎯</div>
+        <h4>Критерии успеха</h4>
+        <ul>
+          <li>Расширить диапазон на 3-4 ноты</li>
+          <li>Свободно петь высокие без зажима</li>
+          <li>Понять, как «работает» голос на уровне анатомии</li>
+          <li>Записать качественный кавер</li>
+          <li>Выступить на концерте «Точь-в-точь»</li>
+        </ul>
+      </div>
+      <div class="card">
+        <div class="card-icon icon-expect">👩‍🏫</div>
+        <h4>Что ждут от педагога</h4>
+        <ul>
+          <li>Экспертиза на уровне выше YouTube</li>
+          <li>Систему: «почему тут зажим и как его убрать»</li>
+          <li>Честность: «вот тут ты делаешь неправильно»</li>
+          <li>Разрушение мифов прошлых педагогов</li>
+          <li>Вызов — задачи чуть выше текущего уровня</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="funnel-container">
+      <h3 class="funnel-title">Воронка для сегмента</h3>
+      <div class="funnel-step">
+        <div class="funnel-num">1</div><div class="funnel-line"></div>
+        <div class="funnel-content">
+          <h4>Осведомлённость</h4>
+          <p>Экспертный YouTube/Reels: «Почему "опора" — это миф», «Как на самом деле работают высокие ноты». Разборы ошибок самоучек.</p>
+        </div>
+      </div>
+      <div class="funnel-step">
+        <div class="funnel-num">2</div><div class="funnel-line"></div>
+        <div class="funnel-content">
+          <h4>Интерес</h4>
+          <p>Подробный разбор анатомии в контенте (EVT-подход). Видео с объяснением: «Что такое EVT и почему это другой уровень». Кейсы учеников «до/после».</p>
+        </div>
+      </div>
+      <div class="funnel-step">
+        <div class="funnel-num">3</div><div class="funnel-line"></div>
+        <div class="funnel-content">
+          <h4>Решение</h4>
+          <p>Пробный урок: «покажи, что не получается — разберём анатомически». Продемонстрировать разницу подходов: что говорили раньше vs как на самом деле.</p>
+        </div>
+      </div>
+      <div class="funnel-step">
+        <div class="funnel-num">4</div><div class="funnel-line"></div>
+        <div class="funnel-content">
+          <h4>Покупка</h4>
+          <p>Абонемент у ведущего педагога (56 000₸). Для этого сегмента важен именно ведущий — им нужна глубокая экспертиза.</p>
+        </div>
+      </div>
+      <div class="funnel-step">
+        <div class="funnel-num">5</div><div class="funnel-line"></div>
+        <div class="funnel-content">
+          <h4>Удержание</h4>
+          <p>Участие в тематических концертах («Точь-в-точь»). Запись каверов в студии. Ансамбль как площадка для практики.</p>
+        </div>
+      </div>
+      <div class="funnel-step">
+        <div class="funnel-num">6</div>
+        <div class="funnel-content">
+          <h4>Адвокат бренда</h4>
+          <p>«Наконец нашёл нормального педагога» — рекомендации в вокальных чатах/форумах. Показывает свой прогресс: записи, видео концертов.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- CJM SEG3 -->
+    <div class="cjm-section">
+      <h3 class="cjm-title">CJM — Customer Journey Map</h3>
+      <p class="cjm-sub">Путь от разочарования к прорыву.</p>
+      <div class="cjm-timeline">
+        <div class="cjm-phase open" onclick="togglePhase(this)">
+          <div class="cjm-phase-header"><div class="cjm-phase-num">1</div><div class="cjm-phase-name">«Застрял и не расту»</div><div class="cjm-phase-toggle">▾</div></div>
+          <div class="cjm-detail">
+            <div class="cjm-row"><div class="cjm-label">Действия</div><div class="cjm-value">Ищет новые методики на YouTube, читает про EVT/SLS, сравнивает студии по подходу, а не по цене</div></div>
+            <div class="cjm-row"><div class="cjm-label">Мысли</div><div class="cjm-value">«Прошлая студия была бесполезной. Может, дело не во мне — а в методике?»</div></div>
+            <div class="cjm-row"><div class="cjm-label">Эмоции</div><div class="cjm-value">Фрустрация → надежда → осторожный скептицизм</div></div>
+            <div class="cjm-row"><div class="cjm-label">Задача бизнеса</div><div class="cjm-value">Контент, показывающий глубину подхода: анатомия, EVT, разборы ошибок типичных студий. «Мы — не как все»</div></div>
+          </div>
+        </div>
+        <div class="cjm-phase" onclick="togglePhase(this)">
+          <div class="cjm-phase-header"><div class="cjm-phase-num">2</div><div class="cjm-phase-name">«Доказывай, что ты другой»</div><div class="cjm-phase-toggle">▾</div></div>
+          <div class="cjm-detail">
+            <div class="cjm-row"><div class="cjm-label">Действия</div><div class="cjm-value">Приходит на пробный с высоким барьером доверия. Задаёт сложные вопросы. Тестирует педагога</div></div>
+            <div class="cjm-row"><div class="cjm-label">Мысли</div><div class="cjm-value">«Если скажет про опору — сразу уйду. Посмотрим, знает ли он, о чём говорит»</div></div>
+            <div class="cjm-row"><div class="cjm-label">Эмоции</div><div class="cjm-value">Скептицизм → «о, он реально разбирается» → волнение</div></div>
+            <div class="cjm-row"><div class="cjm-label">Задача бизнеса</div><div class="cjm-value">Не «продавать», а демонстрировать. Разобрать его конкретный зажим анатомически. Показать, что знаешь больше, чем YouTube</div></div>
+          </div>
+        </div>
+        <div class="cjm-phase" onclick="togglePhase(this)">
+          <div class="cjm-phase-header"><div class="cjm-phase-num">3</div><div class="cjm-phase-name">Прорыв</div><div class="cjm-phase-toggle">▾</div></div>
+          <div class="cjm-detail">
+            <div class="cjm-row"><div class="cjm-label">Действия</div><div class="cjm-value">Через 1–2 месяца ощущает прогресс: ноты, которые не давались, начинают звучать</div></div>
+            <div class="cjm-row"><div class="cjm-label">Мысли</div><div class="cjm-value">«Это работает. За месяц — больше, чем за год в прошлой студии»</div></div>
+            <div class="cjm-row"><div class="cjm-label">Эмоции</div><div class="cjm-value">Восторг → благодарность → «я хочу петь на сцене»</div></div>
+            <div class="cjm-row"><div class="cjm-label">Задача бизнеса</div><div class="cjm-value">Зафиксировать прогресс: запись «было/стало». Предложить записать кавер. Пригласить на концерт «Точь-в-точь»</div></div>
+          </div>
+        </div>
+        <div class="cjm-phase" onclick="togglePhase(this)">
+          <div class="cjm-phase-header"><div class="cjm-phase-num">4</div><div class="cjm-phase-name">«Евангелист» студии</div><div class="cjm-phase-toggle">▾</div></div>
+          <div class="cjm-detail">
+            <div class="cjm-row"><div class="cjm-label">Действия</div><div class="cjm-value">Активно рекомендует, показывает свои записи, участвует во всех ивентах студии</div></div>
+            <div class="cjm-row"><div class="cjm-label">Мысли</div><div class="cjm-value">«Наконец нашёл то, что искал. Хочу, чтобы другие тоже нашли»</div></div>
+            <div class="cjm-row"><div class="cjm-label">Эмоции</div><div class="cjm-value">Лояльность → миссионерство → амбиции расти дальше</div></div>
+            <div class="cjm-row"><div class="cjm-label">Задача бизнеса</div><div class="cjm-value">Дать площадку: концерты, дуэты, запись. Сделать его «лицом» студии в контенте с его согласия</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== SEGMENT 4 ===== -->
+  <div class="seg-panel seg4" id="seg4">
+    <div class="profile-bar">
+      <div class="profile-avatar">🌱</div>
+      <div class="profile-info">
+        <h3>Марина, 38 лет</h3>
+        <p>Менеджер в IT. Выгорание, хочет «что-то для души». Ищет хобби, которое перезагрузит и подарит новый круг общения.</p>
+      </div>
+      <div class="profile-tags">
+        <span class="tag">28–45 лет</span>
+        <span class="tag">Доход средний+</span>
+        <span class="tag">Ищет перезагрузку</span>
+      </div>
+    </div>
+
+    <div class="card-grid">
+      <div class="card">
+        <div class="card-icon icon-pain">🔥</div>
+        <h4>Боли</h4>
+        <ul>
+          <li>Выгорание: жизнь = дом–работа без творчества</li>
+          <li>Не хватает нового круга общения</li>
+          <li>Всё время «для других» — хочет что-то для себя</li>
+          <li>Боится, что «не получится» и «уже поздно»</li>
+          <li>Пробовала другие хобби — не зацепило</li>
+        </ul>
+      </div>
+      <div class="card">
+        <div class="card-icon icon-value">💎</div>
+        <h4>Смыслы и ценности</h4>
+        <ul>
+          <li>Перезагрузка: вокал как антистресс</li>
+          <li>Новые знакомства и тёплая атмосфера</li>
+          <li>Открыть новую сторону себя</li>
+          <li>Комьюнити важнее идеального результата</li>
+          <li>Безопасное пространство без оценок</li>
+        </ul>
+      </div>
+      <div class="card">
+        <div class="card-icon icon-success">🎯</div>
+        <h4>Критерии успеха</h4>
+        <ul>
+          <li>С удовольствием идёт на урок (не через силу)</li>
+          <li>Появились друзья из студии</li>
+          <li>Чувствует себя увереннее и свободнее</li>
+          <li>Спела на квартирнике — и ей понравилось</li>
+          <li>«Это мой день для себя в неделе»</li>
+        </ul>
+      </div>
+      <div class="card">
+        <div class="card-icon icon-expect">👩‍🏫</div>
+        <h4>Что ждут от педагога</h4>
+        <ul>
+          <li>Тёплую, дружелюбную атмосферу</li>
+          <li>Без давления: «в своём темпе»</li>
+          <li>Помощь влиться в группу / ансамбль</li>
+          <li>Позитивное подкрепление — замечать маленькие победы</li>
+          <li>Быть «проводником» в комьюнити студии</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="funnel-container">
+      <h3 class="funnel-title">Воронка для сегмента</h3>
+      <div class="funnel-step">
+        <div class="funnel-num">1</div><div class="funnel-line"></div>
+        <div class="funnel-content">
+          <h4>Осведомлённость</h4>
+          <p>Контент про атмосферу: видео с квартирников, сторис с ансамблей. «Вокал — лучший антистресс». Партнёрства с йога-студиями, wellness-пространствами.</p>
+        </div>
+      </div>
+      <div class="funnel-step">
+        <div class="funnel-num">2</div><div class="funnel-line"></div>
+        <div class="funnel-content">
+          <h4>Интерес</h4>
+          <p>Сторис-отзывы: «Я пришла снять стресс, а нашла подруг». Контент про комьюнити, совместные вечеринки. Акцент: это не про «идеально петь», а про кайф.</p>
+        </div>
+      </div>
+      <div class="funnel-step">
+        <div class="funnel-num">3</div><div class="funnel-line"></div>
+        <div class="funnel-content">
+          <h4>Решение</h4>
+          <p>Пригласить на ансамбль как гостя (послушать/посмотреть) или на квартирник как зрителя. Пробный урок в формате «давай просто попоём».</p>
+        </div>
+      </div>
+      <div class="funnel-step">
+        <div class="funnel-num">4</div><div class="funnel-line"></div>
+        <div class="funnel-content">
+          <h4>Покупка</h4>
+          <p>Абонемент у младшего педагога (45 000₸) + добавить ансамбль. Комбинация «индивидуальный + группа» — максимальная ценность для этого сегмента.</p>
+        </div>
+      </div>
+      <div class="funnel-step">
+        <div class="funnel-num">5</div><div class="funnel-line"></div>
+        <div class="funnel-content">
+          <h4>Удержание</h4>
+          <p>Ансамбль + квартирники = социальный клей. Чат студии. Совместные встречи вне уроков. Фиксация: «ты пришла не умея ничего, а сейчас...»</p>
+        </div>
+      </div>
+      <div class="funnel-step">
+        <div class="funnel-num">6</div>
+        <div class="funnel-content">
+          <h4>Адвокат бренда</h4>
+          <p>Приводит подруг: «Пойдём со мной, там классно!». Делится видео с квартирников. Рекомендует коллегам как способ справиться с выгоранием.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- CJM SEG4 -->
+    <div class="cjm-section">
+      <h3 class="cjm-title">CJM — Customer Journey Map</h3>
+      <p class="cjm-sub">От выгорания к перезагрузке.</p>
+      <div class="cjm-timeline">
+        <div class="cjm-phase open" onclick="togglePhase(this)">
+          <div class="cjm-phase-header"><div class="cjm-phase-num">1</div><div class="cjm-phase-name">«Хочу что-то для себя»</div><div class="cjm-phase-toggle">▾</div></div>
+          <div class="cjm-detail">
+            <div class="cjm-row"><div class="cjm-label">Действия</div><div class="cjm-value">Скроллит Instagram, видит рилс с квартирника. Задумывается: «а может, мне тоже...»</div></div>
+            <div class="cjm-row"><div class="cjm-label">Мысли</div><div class="cjm-value">«Так устала. Хочу что-то, что наполняет. Но вокал — это же для талантливых?»</div></div>
+            <div class="cjm-row"><div class="cjm-label">Эмоции</div><div class="cjm-value">Усталость → мечтательность → сомнение</div></div>
+            <div class="cjm-row"><div class="cjm-label">Задача бизнеса</div><div class="cjm-value">Эмоциональный контент: видео с ансамбля, смех, объятия после квартирника. Месседж: «это не про талант, это про радость»</div></div>
+          </div>
+        </div>
+        <div class="cjm-phase" onclick="togglePhase(this)">
+          <div class="cjm-phase-header"><div class="cjm-phase-num">2</div><div class="cjm-phase-name">Первый визит</div><div class="cjm-phase-toggle">▾</div></div>
+          <div class="cjm-detail">
+            <div class="cjm-row"><div class="cjm-label">Действия</div><div class="cjm-value">Приходит на пробный урок / на квартирник как зритель</div></div>
+            <div class="cjm-row"><div class="cjm-label">Мысли</div><div class="cjm-value">«Какие тут классные люди. Тут тепло. Я бы хотела быть частью этого»</div></div>
+            <div class="cjm-row"><div class="cjm-label">Эмоции</div><div class="cjm-value">Любопытство → приятное удивление → «хочу ещё»</div></div>
+            <div class="cjm-row"><div class="cjm-label">Задача бизнеса</div><div class="cjm-value">Атмосфера на первом контакте. Познакомить с другими учениками. Показать, что тут безопасно и весело</div></div>
+          </div>
+        </div>
+        <div class="cjm-phase" onclick="togglePhase(this)">
+          <div class="cjm-phase-header"><div class="cjm-phase-num">3</div><div class="cjm-phase-name">Вливание в комьюнити</div><div class="cjm-phase-toggle">▾</div></div>
+          <div class="cjm-detail">
+            <div class="cjm-row"><div class="cjm-label">Действия</div><div class="cjm-value">Ходит на индивидуальные + ансамбль. Добавляется в чат. Начинает общаться вне студии</div></div>
+            <div class="cjm-row"><div class="cjm-label">Мысли</div><div class="cjm-value">«Это лучший день недели. Я нашла своих людей»</div></div>
+            <div class="cjm-row"><div class="cjm-label">Эмоции</div><div class="cjm-value">Принадлежность → радость → уверенность в себе</div></div>
+            <div class="cjm-row"><div class="cjm-label">Задача бизнеса</div><div class="cjm-value">Поддерживать вовлечение: ивенты, тематические вечера, совместные активности. Ансамбль — ядро удержания</div></div>
+          </div>
+        </div>
+        <div class="cjm-phase" onclick="togglePhase(this)">
+          <div class="cjm-phase-header"><div class="cjm-phase-num">4</div><div class="cjm-phase-name">Трансформация</div><div class="cjm-phase-toggle">▾</div></div>
+          <div class="cjm-detail">
+            <div class="cjm-row"><div class="cjm-label">Действия</div><div class="cjm-value">Выступает на квартирнике, записывает кавер, приводит друзей и коллег</div></div>
+            <div class="cjm-row"><div class="cjm-label">Мысли</div><div class="cjm-value">«Я — не та, что полгода назад. Я могу больше, чем думала»</div></div>
+            <div class="cjm-row"><div class="cjm-label">Эмоции</div><div class="cjm-value">Гордость → благодарность → желание делиться → лояльность</div></div>
+            <div class="cjm-row"><div class="cjm-label">Задача бизнеса</div><div class="cjm-value">Собрать «историю трансформации» для контента (с согласия). Программа «приведи подругу». Новые вызовы: дуэт, сольный номер</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</section>
+
+<div class="footer">
+  Стратегический документ • Вокальная студия • Алматы 2026
+</div>
+
+</div>
+
+<script>
+function switchSeg(n) {
+  document.querySelectorAll('.seg-btn').forEach(b => b.classList.remove('active'));
+  document.querySelectorAll('.seg-panel').forEach(p => p.classList.remove('active'));
+  document.querySelector(`.seg-btn[data-seg="${n}"]`).classList.add('active');
+  document.getElementById(`seg${n}`).classList.add('active');
+  document.getElementById('segments').scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+
+function togglePhase(el) {
+  el.classList.toggle('open');
+}
+</script>
+</body>
+</html>
